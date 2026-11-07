@@ -2,7 +2,7 @@
 
 让 GPT 直达问题，减少假想反驳、重复免责声明和无依据的自我削弱。
 
-面向 GPT-6 Astra、GPT-6.1 Sol 常见的“叠甲式回答”设计，采用标准 `SKILL.md` 结构。当前版本综合社区提示词、开源项目与失效反馈，提供核心规则、长对话提醒和 14 组人工验收案例。
+面向 GPT-6 Astra、GPT-6.1 Sol 常见的“叠甲式回答”设计，采用标准 `SKILL.md` 结构。当前版本综合社区提示词、开源项目与失效反馈，提供核心规则、长对话提醒和 20 组人工验收案例。
 
 ## 它处理什么
 
@@ -24,6 +24,12 @@
 满足条件就放到对应主张旁边。仅为防范假想批评、重复证明自己谨慎的句子直接删去。证据支持的结论保持原有力度。
 
 这套方法由本项目综合整理。资料中的观察、反例和取舍见 [设计与来源](docs/design.md)。
+
+### 表达自然度作为辅助
+
+主要目标仍是减少防御性回答。在回答成立之后，再参考 [Humanizer-zh](https://github.com/op7418/Humanizer-zh) 的思路清理空话、重复和模板腔，梳理生硬长句，并保持原文语气。
+
+顺序是：保留信息与用户范围 → 处理防御性表达 → 改善自然度。正式文本保留正式程度，清楚的句子可以不改；不凭空增加数字、经历或情绪。具体规则见 [表达自然度](skills/direct-answer/references/natural-writing.md)。
 
 ## 安装到 Codex
 
@@ -74,6 +80,8 @@ $direct-answer
 
 技能聚焦回答与文本编辑。工程测试、工具调用和授权边界按实际任务处理。
 
+文风调整保留作者立场、归因与完成状态；文件编辑同时保护代码、命令、路径、链接目标和结构。这里的“去 AI 味”是改善表达，不用于作者身份判断或检测器承诺。
+
 ## 如何验收
 
 使用 [examples.md](skills/direct-answer/references/examples.md) 中的输入，在同一模型、推理强度和工具环境下分别运行未启用与启用技能的会话。保留完整输出，比较：
@@ -82,6 +90,7 @@ $direct-answer
 2. 是否出现假想反驳或重复限定。
 3. 是否保留必要的纠错、条件与不确定性。
 4. 在第 5 轮、第 10 轮后是否仍保持效果。
+5. 清理模板腔后，是否保留作者声音、独立信息、归因和文件内容。
 
 重点同时检查两类结果：无用途的防御性表达是否减少，必要纠错与真实不确定性是否保留。按含义判断，避免仅统计否定词数量。
 
@@ -93,7 +102,9 @@ $direct-answer
 skills/direct-answer/SKILL.md                核心技能
 skills/direct-answer/references/examples.md  前后对照与人工验收输入
 skills/direct-answer/references/continuity.md 长对话提醒与上下文交接
+skills/direct-answer/references/natural-writing.md 辅助表达规则
 docs/design.md                              资料综合与设计取舍
+skills/direct-answer/THIRD_PARTY_NOTICES.md   随技能分发的第三方来源与许可
 LICENSE                                     MIT 许可证
 ```
 

@@ -45,3 +45,22 @@ Direct Answer 把问题归纳为“句子对当前读者有什么用”。模型
 - 指令生效、宿主持续加载与实际回答改善分别验证。
 
 规则由本项目重新组织和撰写；未将第三方完整提示词或代码复制进安装包。核心文件见 [SKILL.md](../skills/direct-answer/SKILL.md)，持续使用见 [continuity.md](../skills/direct-answer/references/continuity.md)。
+
+## Humanizer-zh 的辅助整合
+
+2026-11-07 阅读了 [op7418/Humanizer-zh](https://github.com/op7418/Humanizer-zh) 的核心技能、说明、许可与测试说明；核心文件对应 [f4518a8](https://github.com/op7418/Humanizer-zh/blob/f4518a8eab97b8bfebc66a89d34320a89bef6930/SKILL.md)。
+
+该项目强调按语义与文体处理空话、重复和公式化表达，并保护信息、确定程度和作者声音。本项目吸收这些编辑原则，作为反防御性规则之后的辅助步骤。
+
+| 取舍 | 在本项目中的落实 |
+| --- | --- |
+| 核心功能继续处理防御性回答。 | 假想反驳、限定准入与多轮连续性保持原有主线。 |
+| 只加入与当前答案有用性相关的表达清理。 | 删除空泛拔高、同义重复与过程套话，梳理妨碍阅读的长句。 |
+| 自然度服从事实与语义。 | 保留范围、否定、归因、作者立场、时间和完成状态。 |
+| 按用途判断具体形式。 | 保留有功能的排比、连接词、标点、正式术语和礼貌用语。 |
+| 已经通顺时允许保持原样。 | 不为展示修改量强行改写，也不靠虚构细节制造“人味”。 |
+| 文件内容与正文分别处理。 | 默认保护代码、配置、链接目标、标题和锚点。 |
+
+整合后的优先级是：信息准确与用户范围 → Direct Answer 的反防御性规则 → 表达自然度。辅助规则单独放入 [natural-writing.md](../skills/direct-answer/references/natural-writing.md)，核心技能仅加入简短入口。
+
+新增案例同时覆盖两种问题出现的文本、归因和推测、独立信息、作者语气、无需修改的文本及文件保护。来源与 MIT 许可记录在随技能分发的 [THIRD_PARTY_NOTICES.md](../skills/direct-answer/THIRD_PARTY_NOTICES.md)。目前完成的是规则整合和验收材料，行为效果需用目标模型测试。
